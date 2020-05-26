@@ -61,7 +61,6 @@ runcmd(struct cmd *cmd)
     ecmd = (struct execcmd*)cmd;
     if(ecmd->argv[0] == 0)
       _exit(0);
-    // Your code here ...
 
     if (execvp((*ecmd).argv[0], (*ecmd).argv) == -1) {
         fprintf(stderr, "execution failed\n");
@@ -72,7 +71,6 @@ runcmd(struct cmd *cmd)
   case '>':
   case '<':
     rcmd = (struct redircmd*)cmd;
-    // Your code here ...
 
     int fd = open((*rcmd).file, (*rcmd).flags, S_IRWXU);
     if (fd < 0) {
@@ -87,8 +85,6 @@ runcmd(struct cmd *cmd)
 
   case '|':
     pcmd = (struct pipecmd*)cmd;
-    // Your code here ...
-
     pipe(p);
         if (fork1() == 0) { 
             dup2(p[1], 1);
